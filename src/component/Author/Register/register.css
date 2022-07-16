@@ -1,13 +1,13 @@
-.de-login-container{
+.de-register-container{
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
-.de-login-container .de-login{
+.de-register-container .de-register{
     width: 500px;
-    height: 500px;
+    height: 700px;
     margin-top: 5%;
     background-color: rgb(236, 231, 231);
     border-radius: 6px;
@@ -16,36 +16,32 @@
     align-items: center;
     justify-content: flex-start;
 }
-.de-login-container input{
+.de-register-container input{
     width: 330px;
     height: 40px;
     padding: 10px 10px;
     border-radius: 6px;
     margin: 20px;
 }
-.de-login-container .de-button-wrap{
-    margin-top: 50px;
-    margin-bottom: 50px;
+.de-register-container .de-button-wrap{
+    margin-top: 30px;
+    margin-bottom: 20px;
     width: 330px;
     display: flex;
     justify-content: center;
 }
-.de-login-container .de-link{
-    color: blue;
+.de-register-container .de-link{
+    margin-left: 2px;
+    color: rgb(0, 255, 55);
     cursor: pointer;
 }
-.de-login-container .de-button-wrap .de-button{
+.de-register-container .de-line{
+    display: flex;
+    margin-bottom: 20px;
+}
+.de-register-container .de-button-wrap .de-button{
     width: 150px;
     height: 40px;
     border-radius: 6px;
     cursor: pointer;
-}
-.de-login-container .de-line{
-    display: flex;
-}
-.ds-bg-clr-green{
-    background-color:rgb(92, 247, 72)
-}
-.ds-bg-clr-blue{
-    background-color:rgb(57, 92, 250)
 }

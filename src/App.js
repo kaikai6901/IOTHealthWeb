@@ -1,26 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
-import { Login } from './component/Author/Login/login';
+import { useState } from "react";
+import "./App.css";
+import { Login } from "./component/Author/Login/login";
+import { Register } from "./component/Author/Register/register";
+import { Device } from "./component/Device/Device/device";
+import { ListDevice } from "./component/Device/ListDevice/list-device";
+import { UserModal } from "./component/Modal/UserModal/user-modal";
 
 function App() {
+  const [page, setPage] = useState("login");
+
   return (
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>
-    //       Edit <code>src/App.js</code> and save to reload.
-    //     </p>
-    //     <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a>
-    //   </header>
-    // </div>
-    <Login />
+    <>
+      {page === "login" && (
+        <Login
+          changePageToRegister={() => setPage("register")}
+          changePageToDevice={() => setPage("device")}
+        />
+      )}
+      {page === "register" && (
+        <Register
+          changePageToLogin={() => setPage("login")}
+          changePageToDevice={() => setPage("device")}
+        />
+      )}
+      {page === "device" && <ListDevice />}
+      {/* <ListDevice /> */}
+      {/* <UserModal /> */}
+      {/* <Device /> */}
+    </>
   );
 }
 

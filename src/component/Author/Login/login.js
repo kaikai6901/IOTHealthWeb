@@ -1,19 +1,69 @@
-import './login.css'
+import { useState } from "react";
+import { API_END_POINT } from "../../../const";
+import { ArrowNext } from "../../../dekit/icons/arrow-next";
+import "./login.css";
+import axios from "axios";
+import qs from "qs";
 
-export function Login() {
-    return <div className='de-login-container'>
-        <div className='de-login'>
-            <h1> Login </h1>
-            <input type='text' placeholder="User Name" />
-            <input type='text' placeholder="Password" />
-            <div className='de-button-wrap'>
-                <button className='de-button ds-bg-clr-green'>
-                    Login
-                </button>
-                <button className='de-button'>
-                    Register
-                </button>
-            </div>
+export function Login(props) {
+  const [username, setUsername] = useState("");
+  const [password, setPassWord] = useState("");
+
+  const onHandleLogin = async () => {
+    var data = qs.stringify({
+      username: username,
+      password: password,
+    });
+    var config = {
+      method: "post",
+      url: "https://iot-health.onrender.com/user/login",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      data: data,
+    };
+
+    await axios(config)
+      .then(function (response) {
+        localStorage.setItem('token', response.data)
+        props.changePageToDevice()
+      })
+      .catch(function (error) {
+        alert(error);
+      });
+  };
+
+  const onChangeUsername = (event) => {
+    console.log(event.target.value);
+    setUsername(event.target.value);
+  };
+
+  const onChangepassword = (event) => {
+    setPassWord(event.target.value);
+  };
+
+  return (
+    <div className="de-login-container">
+      <div className="de-login">
+        <h1> Login </h1>
+        <input
+          type="text"
+          placeholder="User Name"
+          onChange={onChangeUsername}
+        />
+        <input type="text" placeholder="Password" onChange={onChangepassword} />
+        <div className="de-button-wrap">
+          <button className="de-button ds-bg-clr-green" onClick={onHandleLogin}>
+            Login
+          </button>
         </div>
+        <div className="de-line">
+          Don't have account?{" "}
+          <div className="de-link" onClick={props.changePageToRegister}>
+            Register
+          </div>
+        </div>
+      </div>
     </div>
+  );
 }
