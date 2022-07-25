@@ -23,7 +23,7 @@ function App() {
           changePageToDevice={() => setPage("device")}
         />
       )}
-      {page === "device" && <ListDevice />}
+      {page === "device" && <ListDevice toLogin = {() => setPage('login')}/>}
       {/* <ListDevice /> */}
       {/* <UserModal /> */}
       {/* <Device /> */}

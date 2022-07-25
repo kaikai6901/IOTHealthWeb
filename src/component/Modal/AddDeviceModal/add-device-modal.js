@@ -2,33 +2,35 @@ import { useState } from 'react'
 import './add-device-modal.css'
 import axios from "axios";
 import qs from 'qs';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export function AddDeviceModal(props) {
 
-    const [name, setName]= useState()
+    const [name, setName] = useState()
     const [id, setId] = useState()
 
     const onHandleAddDevice = async () => {
         var data = qs.stringify({
             name: name,
             Id: id,
-          });
-          var config = {
+        });
+        var config = {
             method: "post",
             url: "https://iot-health.onrender.com/heartSensor",
             headers: {
                 token: localStorage.getItem("token"),
             },
             data: data,
-          };
-      
-          await axios(config)
+        };
+
+        await axios(config)
             .then(function (response) {
-              alert('success')
-              props.closeAddDeviceModal()
+                toast.success('Add new device successfully', { position: toast.POSITION.TOP_RIGHT, autoClose: 3000 })
+                props.closeAddDeviceModal()
             })
             .catch(function (error) {
-              alert(error);
+                alert(error);
             });
     }
 
@@ -45,7 +47,7 @@ export function AddDeviceModal(props) {
             <div className='de-add-device-modal'>
                 <div className='de-pop-up' onClick={props.closeAddDeviceModal} />
                 <div className='de-main-content'>
-                    <h1>Device Infomation</h1>
+                    <h1>Add new device</h1>
                     <div className='de-wrap-input'>
                         <label>Device Name</label>
                         <input value={name} onChange={onChangeName}></input>
@@ -59,6 +61,7 @@ export function AddDeviceModal(props) {
                     </div>
                 </div>
             </div>
+            <ToastContainer />
         </>
     )
 }

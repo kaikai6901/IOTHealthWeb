@@ -8,14 +8,17 @@ import { UserModal } from "../../Modal/UserModal/user-modal";
 import { DeviceModal } from "../../Modal/DeviceModal/device-modal";
 import { Device } from "../Device/device";
 import { AddDeviceModal } from "../../Modal/AddDeviceModal/add-device-modal";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-export function ListDevice() {
+export function ListDevice(props) {
   const [userModal, setUserModal] = useState("off");
   const [deviceModal, setDeviceModal] = useState("off");
   const [addDeviceModal, setAddDeviceModal] = useState("off");
   const [listDevice, setListDevice] = useState();
   const [selected, setSelected] = useState(0);
   const [reset, setReset] = useState(0);
+  const [firstLoad] = useState(true);
 
   useEffect(() => {
     var config = {
@@ -33,7 +36,28 @@ export function ListDevice() {
       .catch(function (error) {
         alert(error);
       });
+
   }, [reset]);
+
+  useEffect(() => {
+    toast.success('Welcome', { position: toast.POSITION.TOP_RIGHT, autoClose: 3000 })
+  }, [firstLoad])
+
+  // useEffect(() => {
+  //   let message = '';
+  //   for(let i= 0; i< listDevice.length; i++) {
+  //     if(listDevice[i].warning){
+  //       message = listDevice[i].warning + ' at ' +listDevice[i].create 
+  //       break;
+  //     }
+  //   }
+  //   const timer = setTimeout(() => {
+  //     if(message != '')
+  //     toast.warning(message, { position: toast.POSITION.TOP_RIGHT, autoClose: 3000 })
+  //   }, 60000 * 10);
+  //   return () => clearTimeout(timer);
+  
+  // }, [listDevice])
 
   const onHandleEraseModal = (id) => {
     var config = {
@@ -46,8 +70,8 @@ export function ListDevice() {
 
     axios(config)
       .then(function (response) {
-        alert('Success')
-        setReset(1-reset)
+        toast.success('Erase device successfully', { position: toast.POSITION.TOP_RIGHT, autoClose: 3000 })
+        setReset(1 - reset)
       })
       .catch(function (error) {
         alert(error);
@@ -58,8 +82,8 @@ export function ListDevice() {
     setUserModal('off')
     setDeviceModal('off')
     setAddDeviceModal('off')
-    setReset(1- reset)
-  }  
+    setReset(1 - reset)
+  }
 
   return (
     <>
@@ -84,22 +108,23 @@ export function ListDevice() {
                   </div>
                 </div>
               ))}
-            <div className="ds-add-device" onClick={()=> setAddDeviceModal('on')}>
+            <div className="ds-add-device" onClick={() => setAddDeviceModal('on')}>
               Add device
             </div>
           </div>
-        {listDevice && <Device device = {listDevice[selected]}/>}
+          {listDevice && <Device device={listDevice[selected]} />}
         </div>
       </div>
       {userModal === "on" && (
-        <UserModal closeUserModal={onCloseModal} />
+        <UserModal closeUserModal={onCloseModal} toLogin={props.toLogin} />
       )}
       {deviceModal !== "off" && (
         <DeviceModal closeDeviceModal={onCloseModal} device={listDevice[deviceModal]} />
       )}
       {addDeviceModal === 'on' && (
-        <AddDeviceModal closeAddDeviceModal={onCloseModal}/>
+        <AddDeviceModal closeAddDeviceModal={onCloseModal} />
       )}
+      <ToastContainer />
     </>
   );
 }

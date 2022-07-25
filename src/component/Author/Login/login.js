@@ -4,6 +4,8 @@ import { ArrowNext } from "../../../dekit/icons/arrow-next";
 import "./login.css";
 import axios from "axios";
 import qs from "qs";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export function Login(props) {
   const [username, setUsername] = useState("");
@@ -26,10 +28,13 @@ export function Login(props) {
     await axios(config)
       .then(function (response) {
         localStorage.setItem('token', response.data)
+        toast.success('Welcome', {position: toast.POSITION.TOP_RIGHT,  autoClose: 3000 })
         props.changePageToDevice()
       })
       .catch(function (error) {
-        alert(error);
+        toast.error('Wrong user name or password', {
+          position: toast.POSITION.TOP_RIGHT, autoClose: 3000
+        })
       });
   };
 
@@ -42,7 +47,7 @@ export function Login(props) {
     setPassWord(event.target.value);
   };
 
-  return (
+  return (<>
     <div className="de-login-container">
       <div className="de-login">
         <h1> Login </h1>
@@ -65,5 +70,7 @@ export function Login(props) {
         </div>
       </div>
     </div>
+    <ToastContainer />
+  </>
   );
 }

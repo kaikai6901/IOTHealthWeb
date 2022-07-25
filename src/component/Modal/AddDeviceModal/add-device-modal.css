@@ -46,6 +46,7 @@
   font-family: "Courier New", Courier, monospace;
   font-size: 20px;
   font-weight: bold;
+  border: none;
   background-color: rgb(47, 113, 255);
   cursor: pointer;
 }
@@ -60,4 +61,5 @@
   height: 20px;
   border-radius: 8px;
   padding: 10px;
+  border: 1px solid rgb(116, 115, 115);
 }

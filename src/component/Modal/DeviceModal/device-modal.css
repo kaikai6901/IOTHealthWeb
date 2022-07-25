@@ -47,6 +47,7 @@
   font-size: 30px;
   font-weight: bold;
   background-color: rgb(47, 102, 255);
+  border: none;
 }
 .de-device-modal .de-main-content .de-wrap-button .ds-button-detail {
   display: flex;
@@ -59,6 +60,7 @@
   font-size: 30px;
   font-weight: bold;
   background-color: rgb(47, 61, 255);
+  border: none;
 }
 .de-device-modal .de-main-content .de-wrap-input {
   display: flex;
@@ -71,4 +73,5 @@
   height: 20px;
   border-radius: 8px;
   padding: 10px;
+  border: 1px solid rgb(116, 115, 115);
 }

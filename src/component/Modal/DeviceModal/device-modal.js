@@ -2,6 +2,8 @@ import { useState } from 'react'
 import './device-modal.css'
 import axios from "axios";
 import qs from 'qs';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export function DeviceModal(props) {
 
@@ -24,7 +26,7 @@ export function DeviceModal(props) {
       
           await axios(config)
             .then(function (response) {
-              alert('success')
+              toast.success('Update device successfully', { position: toast.POSITION.TOP_RIGHT, autoClose: 3000 })
               props.closeDeviceModal()
             })
             .catch(function (error) {
@@ -59,6 +61,7 @@ export function DeviceModal(props) {
                     </div>
                 </div>
             </div>
+            <ToastContainer />
         </>
     )
 }

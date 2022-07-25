@@ -54,6 +54,11 @@ export function UserModal(props) {
         setHeight(event.target.value)
     }
 
+    const onHandleLogout = () => {
+        localStorage.setItem('token', '')
+        props.toLogin()
+    }
+
     const onSaveInformation = async () => {
         var data = qs.stringify({
             name: name,
@@ -61,23 +66,23 @@ export function UserModal(props) {
             age: age,
             weight: weight,
             height: height
-          });
-          var config = {
+        });
+        var config = {
             method: "put",
             url: `https://iot-health.onrender.com/user/information`,
             headers: {
                 token: localStorage.getItem("token"),
             },
             data: data,
-          };
-      
-          await axios(config)
+        };
+
+        await axios(config)
             .then(function (response) {
-              alert('success')
-              props.closeUserModal()
+                alert('success')
+                props.closeUserModal()
             })
             .catch(function (error) {
-              alert(error);
+                alert(error);
             });
     }
 
@@ -107,7 +112,10 @@ export function UserModal(props) {
                         <label>Height</label>
                         <input placeholder={height} onChange={onChangeHeight}></input>
                     </div>
-                    <button className='de-button' onClick={onSaveInformation}>Save</button>
+                    <div className='de-wrap-button'>
+                        <button className='de-button' onClick={onSaveInformation}>Save</button>
+                        <button className='de-button de-logout' onClick={onHandleLogout}>Logout</button>
+                    </div>
                 </div>
             </div>
         </>
