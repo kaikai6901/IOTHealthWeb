@@ -24,7 +24,7 @@ export function Register(props) {
           });
           var config = {
             method: "post",
-            url: "https://iot-health-d5hm.onrender.com//user/register",
+            url: "https://iot-health-d5hm.onrender.com/user/register",
             headers: {
               "Content-Type": "application/x-www-form-urlencoded",
             },
