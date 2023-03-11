@@ -13,7 +13,7 @@ export function Device(props) {
         if (!props.device?.Id) return;
         var config = {
             method: "get",
-            url: `https://iot-health.onrender.com/heartSensorData/${props.device.Id}`,
+            url: `https://iot-health-d5hm.onrender.com/heartSensorData/${props.device.Id}`,
             headers: {
                 token: localStorage.getItem("token"),
             },

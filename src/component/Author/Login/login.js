@@ -18,7 +18,7 @@ export function Login(props) {
     });
     var config = {
       method: "post",
-      url: "https://iot-health.onrender.com/user/login",
+      url: "https://iot-health-d5hm.onrender.com/user/login",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       },

@@ -17,7 +17,7 @@ export function AddDeviceModal(props) {
         });
         var config = {
             method: "post",
-            url: "https://iot-health.onrender.com/heartSensor",
+            url: "https://iot-health-d5hm.onrender.com/heartSensor",
             headers: {
                 token: localStorage.getItem("token"),
             },

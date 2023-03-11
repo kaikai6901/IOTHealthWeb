@@ -14,7 +14,7 @@ export function UserModal(props) {
     useEffect(() => {
         var config = {
             method: "get",
-            url: "https://iot-health.onrender.com/user/information",
+            url: "https://iot-health-d5hm.onrender.com/user/information",
             headers: {
                 token: localStorage.getItem("token"),
             },
@@ -69,7 +69,7 @@ export function UserModal(props) {
         });
         var config = {
             method: "put",
-            url: `https://iot-health.onrender.com/user/information`,
+            url: `https://iot-health-d5hm.onrender.com/user/information`,
             headers: {
                 token: localStorage.getItem("token"),
             },

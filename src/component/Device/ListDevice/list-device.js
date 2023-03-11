@@ -23,7 +23,7 @@ export function ListDevice(props) {
   useEffect(() => {
     var config = {
       method: "get",
-      url: "https://iot-health.onrender.com/heartSensor",
+      url: "https://iot-health-d5hm.onrender.com/heartSensor",
       headers: {
         token: localStorage.getItem("token"),
       },
@@ -62,7 +62,7 @@ export function ListDevice(props) {
   const onHandleEraseModal = (id) => {
     var config = {
       method: "delete",
-      url: `https://iot-health.onrender.com/heartSensor/${id}`,
+      url: `https://iot-health-d5hm.onrender.com/heartSensor/${id}`,
       headers: {
         token: localStorage.getItem("token"),
       },
